@@ -27,10 +27,10 @@ main/php/dashboard/display-comixs/page/comix_content
 ```
 
 # Demo Page
-Link : [Comix](http://comix.infinityfreeapp.com/)
+Link : [Comix](http://)
 
-<img src="https://feliciahard.github.io/comix-src/images/login.jpeg" width="auto" />
+<img src="https://feliciahard.github.io/comix-src/images/2.0/signin.png" width="auto" />
 
-<img src="https://feliciahard.github.io/comix-src/images/dashboard.jpeg" width="auto" />
+<img src="https://feliciahard.github.io/comix-src/images/2.0/landing.png" width="auto" />
 
-<img src="https://feliciahard.github.io/comix-src/images/pages.jpeg" width="auto" />
+<img src="https://feliciahard.github.io/comix-src/images/.png" width="auto" />
