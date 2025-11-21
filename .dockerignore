@@ -1,0 +1,29 @@
+# Node modules
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Next.js build output
+.next
+out
+
+# Logs
+logs
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Prisma generated client (will be regenerated inside container)
+lib/generated/prisma
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db

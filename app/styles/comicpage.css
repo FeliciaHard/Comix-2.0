@@ -1,0 +1,159 @@
+/* Define the scrolling animation */
+@keyframes scrolling-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.box {
+  --border-angle: 0deg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 4px hsl(0 0% 0% / 25%);
+  animation: border-angle-rotate 10s infinite linear;
+  border: 0.5rem solid transparent;
+  position: relative;
+
+  &.a {
+    background: linear-gradient(white, white) padding-box,
+      /* conic-gradient(
+          from var(--border-angle),
+          oklch(100% 100% 0deg),
+          oklch(100% 100% 45deg),
+          oklch(100% 100% 90deg),
+          oklch(100% 100% 135deg),
+          oklch(100% 100% 180deg),
+          oklch(100% 100% 225deg),
+          oklch(100% 100% 270deg),
+          oklch(100% 100% 315deg),
+          oklch(100% 100% 360deg)
+        ) */
+        conic-gradient(
+          from var(--border-angle),
+          oklch(100% 0% 0deg), /* First color */
+          oklch(50% 0% 180deg) /* Second color */
+        )
+        border-box;
+  }
+
+  &.b {
+    background: linear-gradient(white, white) padding-box,
+      conic-gradient(
+          from var(--border-angle),
+          var(--bg) 50%,
+        white
+        )
+        border-box;
+  }
+
+  &.c {
+    border-radius: 100%;
+    background: radial-gradient(circle, var(--bg) 60%, transparent 60%);
+
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 4px;
+      animation: border-angle-rotate 10s infinite linear;
+      z-index: -1;
+    }
+
+    &:before {
+      inset: 0;
+      background: repeating-conic-gradient(
+          from var(--border-angle),
+          var(--bg),
+          var(--bg) 30deg,
+          oklch(100% 50% 190deg) calc(360deg / 6)
+        )
+        border-box;
+    }
+
+    &:after {
+      background: repeating-conic-gradient(
+          from calc(var(--border-angle) * -1),
+          oklch(100% 40% 50deg),
+          black 60deg
+        )
+        border-box;
+    }
+  }
+}
+
+@keyframes border-angle-rotate {
+  from { --border-angle: 0deg; }
+  to { --border-angle: 360deg; }
+}
+
+
+/** boilerplate **/
+/* body {
+  --bg: hsl(190deg 20% 10%);
+  background: var(--bg);
+  font-size: 32px;
+  display: flex;
+  place-content: center;
+  gap: 8rem;
+  min-height: 100svh;
+  flex-wrap: wrap;
+} */
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.viewer-canvas img {
+  border-radius: 18px !important;
+/*    border: 3px solid #613dc1 !important;*/
+}
+
+.viewer-toolbar {
+  display: flex; /* ensure flex container */
+  gap: 10px; /* adjust gap as needed */
+  scale: 1.8;
+  margin-top: 1%;
+  margin-bottom: 4%;
+  opacity: 0.4;
+  transition: opacity 0.2s ease-in-out;
+}
+
+
+.viewer-toolbar:hover {
+  opacity: 1;
+}
+
+.viewer-zoom-in,
+.viewer-zoom-out,
+.viewer-one-to-one,
+.viewer-reset,
+.viewer-prev,
+.viewer-play,
+.viewer-large,
+.viewer-next,
+.viewer-rotate-left,
+.viewer-rotate-right,
+.viewer-flip-horizontal,
+.viewer-flip-vertical {
+  background-image: linear-gradient(to right, #831843, #701a75) !important; /* from pink-950 to fuchsia-950 */
+  color: white !important; /* ensure icons/text are readable */
+  border: none; /* optional cleanup */
+}
+
+@media only screen and (max-width: 768px) { /* MOBILE VIEW */
+  .viewer-toolbar {
+      scale: 1.3;
+  }
+
+  /* .viewer-footer {
+      padding-bottom: 15%;
+      margin-bottom: 18%;
+  } */
+}

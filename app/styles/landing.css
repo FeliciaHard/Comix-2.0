@@ -1,0 +1,45 @@
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.scrolling-row {
+  display: flex;
+  width: 200%;
+  animation-duration: 300s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.scroll-left {
+  animation-name: scroll-left;
+}
+
+.scroll-right {
+  animation-name: scroll-right;
+}
+
+.animation-paused {
+  animation-play-state: paused !important;
+}
+
+/* Disable animation for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .scrolling-row {
+    animation: none !important;
+  }
+}
