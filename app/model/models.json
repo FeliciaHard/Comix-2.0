@@ -1,0 +1,46 @@
+{
+    "models": [
+        {
+            "model_id": 0,
+
+            "bio": {
+                "bio_name": "Mikayla Demaiter",
+                "bio_pic": "https://preview.redd.it/contrary-to-popular-belief-the-main-reason-for-heart-v0-7lfyyv1tp4cf1.jpg?width=1080&crop=smart&auto=webp&s=c5146bfccee485357bcadfca80f79b4a9ed8a8e8",
+                "bio_pic2": "https://mundodeportivo.com/us/files/content_image_mobile_filter/uploads/2024/02/09/65c5fdf15ba4e.png",
+                "bio_birthdate": "2000-05-14",
+                "bio_zodiac": "Taurus",
+                "bio_sex": "Female",
+                "bio_height_cm": 163,
+                "bio_weight_kg": 55,
+                "bio_nationality": "Canadian",
+                "bio_birthplace": "Chatham, Ontario, Canada",
+                "bio_profession": "Model, Former Ice Hockey Player, Social Media Personality",
+                "bio_education": "Western University (rumored, unconfirmed)",
+                "bio_eye_color": "Green",
+                "bio_hair_color": "Blonde",
+                "bio_languages": ["English"]
+            },
+            
+            "media": {
+                "media_telegram": "https://t.me/mikaylamdemaiter",
+                "media_instagram": "https://www.instagram.com/mikaylademaiter/",
+                "media_facebook": "https://www.facebook.com/p/Mikayla-Demaiter-100063891663213/",
+                "media_x": "https://x.com/mikaylademaiter",
+                "media_tiktok": "https://www.tiktok.com/@mikaylademaiterr",
+                "media_onlyfans": "https://onlyfans.com/mikayla_demaiter",
+                "media_official_website": "https://www.mikaylamdemaiter.com"
+            },
+            
+            "channel": {
+                "name": "MD",
+                "description": "",
+                "binary": "01101101011010010110101101100001011110010110110001100001011011010110010001100101011011010110000101101001011101000110010101110010",
+                "encoding": "ASCII",
+                "tags": ["telegram", "channel", "binary", "metadata"],
+                "created_at": "",
+                "version": ""
+            }
+        }
+    ]
+}
+  

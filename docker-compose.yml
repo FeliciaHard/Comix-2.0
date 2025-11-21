@@ -1,0 +1,23 @@
+services:
+  comix:
+    build:
+      context: .
+      target: runner
+    container_name: comix
+    ports:
+      - "3240:3000"
+    env_file:
+      #- .env
+      - .env.production
+    #volumes:
+      #- ./.next:/app/.next
+      #- ./app:/app/app
+      #- ./components:/app/components
+      #- ./hooks:/app/hooks
+      #- ./prisma:/app/prisma
+      #- ./public:/app/public
+      #- ./lib:/app/lib
+      #- .:/app
+      #-  ./node_modules:/app/node_modules
+    command: sh -c "npx prisma generate && npm start"
+    restart: unless-stopped

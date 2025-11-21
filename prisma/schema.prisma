@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tbl_user {
+  id        Int      @id
+  name      String   @unique @db.VarChar(150)
+  pass      String   @db.VarChar(255)
+  pass_inc  String   @db.VarChar(255)
+  profile   String   @db.LongText
+  timestamp DateTime @default(now()) @db.Timestamp(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tbl_comix {
+  id_comix    Int
+  name_comix  String   @db.VarChar(255)
+  tol_page    Int
+  dis_comix   String   @db.LongText
+  audio_path  String   @db.VarChar(150)
+  id_page     Int
+  filename    String   @db.VarChar(150)
+  cover_page  String   @db.VarChar(250)
+  cover_colab String   @db.VarChar(250)
+  Timestamp   DateTime @default(now()) @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tbl_img {
+  id_img Int    @id
+  name   String @db.VarChar(50)
+  image  String @db.LongText
+
+  @@ignore
+}

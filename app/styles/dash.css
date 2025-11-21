@@ -1,0 +1,17 @@
+/* Define the scrolling animation */
+@keyframes scrolling-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* Apply the scrolling animation to the text */
+  .scrolling-text {
+    animation: scrolling-left 8s linear infinite;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  
