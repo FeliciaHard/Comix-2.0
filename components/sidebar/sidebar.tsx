@@ -64,6 +64,15 @@ const navData = {
         { title: modelName, url: "/model/0" },
       ],
     },
+    {
+      title: "Visit Strippy",
+      icon: IconGenderFemale,
+      items: [
+        { title: "Kayden Kross", url: "/strippy/1" },
+        { title: "Jeff Milton", url: "/strippy/2" },
+        { title: "Kaytee Bees", url: "/strippy/3" },
+      ],
+    },
   ],
   navSecondary: [
     { title: "Settings", url: "#", icon: IconSettings },

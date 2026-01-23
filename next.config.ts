@@ -28,6 +28,21 @@ const nextConfig: NextConfig = {
         hostname: 'preview.redd.it',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'lthumb.lisimg.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'scontent.fkul8-1.fna.fbcdn.net',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images-cdn.ubuy.com',
+        pathname: '**',
+      },
     ],
   },
 };

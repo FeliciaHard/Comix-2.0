@@ -24,7 +24,7 @@ export default function RootLayout({
     <div className="relative bg-white dark:bg-black text-black dark:text-white">
         <div
             className="
-                bg-[url('https://feliciahard.github.io/comix-src/images/type3.png')]
+                bg-[url('https://feliciahard.github.io/comix-src/images/type3.webp')]
                 bg-cover sm:bg-center bg-no-repeat bg-brightness-[0.2] grayscale
                 lg:bg-none
             "
