@@ -52,7 +52,7 @@ export default function SigninPage() {
       </div>
       <div className="bg-muted relative hidden lg:block">
         <Image
-          src={`https://${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}/comix-src/images/type3.png`}
+          src={`https://${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}/comix-src/images/type3.webp`}
           alt="Signin illustration"
           width={1920}
           height={1080}
