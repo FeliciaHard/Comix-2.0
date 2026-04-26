@@ -9,7 +9,7 @@ datasource db {
 
 model tbl_user {
   id        Int      @id
-  name      String   @unique @db.VarChar(150)
+  name      String   @db.VarChar(150)
   pass      String   @db.VarChar(255)
   pass_inc  String   @db.VarChar(255)
   profile   String   @db.LongText
@@ -39,4 +39,11 @@ model tbl_img {
   image  String @db.LongText
 
   @@ignore
+}
+
+model tbl_model_album {
+  id_model_album Int      @id @default(autoincrement())
+  id_model       Int
+  filename       String   @db.VarChar(150)
+  created_at     DateTime @default(now()) @db.Timestamp(0)
 }

@@ -12,6 +12,7 @@ import ScrollUpDown from '@/components/ui/scroll-up-down';
 import strippyData from '../strippies.json'; // Adjust path if needed
 import StrippyViewer from './strippyViewer';
 import StrippyCoverFirstImage from './strippyCover';
+import StrippyVPlayer from './strippyVPlayer';
 
 import {
   Pagination,
@@ -36,6 +37,11 @@ type Strippy = {
   id_model: string;
   filename: string;
   cover_page?: string; // optional if your DB may not have it
+};
+
+type VideoItem = {
+  title: string;
+  url: string;
 };
 
 function formatDateWithAge(dateStr: string) {
@@ -122,7 +128,7 @@ export default function StrippyClient({ strippyId }: PageProps) {
     }
   
     fetchStrippy();
-  }, [strippyId]);    
+  }, [strippyId]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -373,6 +379,15 @@ export default function StrippyClient({ strippyId }: PageProps) {
               <StrippyViewer strippyFolder={filePath} strippyName={cleanFilename(selectedAlbum.title)} strippyTitle={selectedAlbum.title} />
             </div>
           </div>
+
+          {/* Video Section (same theme as Favourite Albums) */}
+            <div className="order-3 md:order-none bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(0,0,0,0.85)] md:col-span-3 rounded-xl p-6">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                Special Videos
+              </h2>
+
+              <StrippyVPlayer strippyFolder={filePath} loading={loading} />
+            </div>
         </div>
       </div>
 

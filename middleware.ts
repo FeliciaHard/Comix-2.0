@@ -39,6 +39,8 @@ export const config = {
     "/dashboard/:path*",
     "/telegram/:path*",
     "/comic-page/:path*",
+    "/model/:path*",
+    "/strippy/:path*",
     "/api/:path*",
     "/signin",
     "/signup",
