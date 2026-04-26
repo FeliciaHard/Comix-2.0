@@ -43,6 +43,11 @@ const nextConfig: NextConfig = {
         hostname: 'images-cdn.ubuy.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'assets.zhainanle.com',
+        pathname: '**',
+      },
     ],
   },
 };
