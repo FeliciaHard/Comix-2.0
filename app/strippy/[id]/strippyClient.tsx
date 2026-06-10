@@ -346,7 +346,7 @@ export default function StrippyClient({ strippyId }: PageProps) {
                   <PaginationComponent currentPage={currentPage} totalPages={totalPages} handlePageClick={handlePageClick} />
                 )}
 
-                <div className="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 justify-items-center auto-rows-fr">
+                <div className="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 justify-items-center auto-rows-fr">
                   {paginatedAlbums.map((page: Strippy) => (
                     <div
                       key={page.id_model_album}

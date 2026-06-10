@@ -32,6 +32,7 @@ export default function StrippyViewer({ strippyFolder, strippyName, strippyTitle
 
   const host = process.env.NEXT_PUBLIC_BLOB_IP;
   const port = process.env.NEXT_PUBLIC_BLOB_PORT;
+  const domain = process.env.NEXT_PUBLIC_IMAGE_DOMAIN;
 
   // Thumbnail resolution settings - adjust these values to change thumbnail size
   const thumbnailMaxWidth = 500; // Change this to adjust thumbnail width
@@ -63,23 +64,50 @@ export default function StrippyViewer({ strippyFolder, strippyName, strippyTitle
   const loadStrippy = useCallback(
     async (title: string) => {
       setLoading(true);
+    
+      const encodedTitle = encodeURIComponent(title);
+    
+      const primaryUrl =
+        `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/content/Strippy/${strippyFolder}/${encodedTitle}`;
+    
+      const fallbackUrl =
+        `https://${domain}/Strippy/${strippyFolder}/${encodedTitle}`;
+    
       try {
-        const encodedTitle = encodeURIComponent(title);
-        const resp = await fetch(
-          `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/content/Strippy/${strippyFolder}/${encodedTitle}`
-        );
-
-        if (!resp.ok) throw new Error(resp.statusText);
-
+        let resp: Response;
+    
+        try {
+          resp = await fetch(primaryUrl);
+    
+          if (!resp.ok) {
+            throw new Error(`Primary request failed: ${resp.status}`);
+          }
+        } catch (primaryError) {
+          console.warn(
+            "Primary URL failed, trying fallback...",
+            primaryError
+          );
+    
+          resp = await fetch(fallbackUrl);
+    
+          if (!resp.ok) {
+            throw new Error(`Fallback request failed: ${resp.status}`);
+          }
+        }
+    
         const blob = await resp.blob();
-        const file = new File([blob], title, { type: blob.type });
+    
+        const file = new File([blob], title, {
+          type: blob.type || "application/octet-stream",
+        });
+    
         openStrippy(file);
       } catch (error) {
-        console.error('Fetching strippy error:', error);
+        console.error("Fetching strippy error:", error);
+      } finally {
         setLoading(false);
       }
-    },
-    [host, port, openStrippy]
+    }, [host, port, domain, strippyFolder, openStrippy]
   );
 
   useEffect(() => {

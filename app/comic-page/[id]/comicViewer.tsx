@@ -31,6 +31,7 @@ export default function ComicViewer({ comicTitle }: Props) {
 
   const host = process.env.NEXT_PUBLIC_BLOB_IP;
   const port = process.env.NEXT_PUBLIC_BLOB_PORT;
+  const domain = process.env.NEXT_PUBLIC_IMAGE_DOMAIN;
 
   // Wrap openComic with useCallback
   const openComic = useCallback(
@@ -56,25 +57,41 @@ export default function ComicViewer({ comicTitle }: Props) {
 
   // Include openComic as a dependency
   const loadComic = useCallback(
-    async (title: string) => {
-      setLoading(true);
-      try {
-        const encodedTitle = encodeURIComponent(title);
-        const resp = await fetch(
-          `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/comix_content/TracyScops_Arc/${encodedTitle}`
-        );
-
-        if (!resp.ok) throw new Error(resp.statusText);
-
-        const blob = await resp.blob();
-        const file = new File([blob], title, { type: blob.type });
-        openComic(file);
-      } catch (error) {
-        console.error('Fetching comic error:', error);
-        setLoading(false);
-      }
-    },
-    [host, port, openComic]
+  	async (title: string) => {
+    	setLoading(true);
+	
+    	const encodedTitle = encodeURIComponent(title);
+	
+    	const primaryUrl =
+      	`http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/comix_content/TracyScops_Arc/${encodedTitle}`;
+	
+    	const fallbackUrl =
+      	`https://${domain}/comix-src/contents/TracyScops_Arc/${encodedTitle}`;
+	
+    	try {
+  			let resp: Response;
+			
+  			try {
+    			resp = await fetch(primaryUrl);
+  			} catch (err) {
+    			console.warn("Primary fetch failed, trying fallback", err);
+			
+    			resp = await fetch(fallbackUrl);
+  			}
+			
+  			if (!resp.ok) {
+    			throw new Error(`HTTP ${resp.status}`);
+  			}
+			
+  			const blob = await resp.blob();
+  			const file = new File([blob], title, { type: blob.type });
+			
+  			openComic(file);
+		} catch (error) {
+  			console.error("Fetching comic error:", error);
+		}
+  	},
+  	[host, port, openComic]
   );
 
   useEffect(() => {
