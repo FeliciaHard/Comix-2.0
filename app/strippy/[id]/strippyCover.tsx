@@ -20,30 +20,52 @@ export default function StrippyCoverFirstImage({
 
   const host = process.env.NEXT_PUBLIC_BLOB_IP;
   const port = process.env.NEXT_PUBLIC_BLOB_PORT;
+  const domain = process.env.NEXT_PUBLIC_IMAGE_DOMAIN;
 
   const loadStrippy = useCallback(async () => {
     setLoading(true);
     setError(null);
-
+      
+    const encodedTitle = encodeURIComponent(strippyTitle);
+      
+    const primaryUrl =
+      `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/content/Strippy/${strippyFolder}/${encodedTitle}`;
+      
+    const fallbackUrl =
+      `https://${domain}/Strippy/${strippyFolder}/${encodedTitle}`;
+      
     try {
-      const encodedTitle = encodeURIComponent(strippyTitle);
-      const resp = await fetch(
-        `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/content/Strippy/${strippyFolder}/${encodedTitle}`
-      );
-
-      if (!resp.ok) throw new Error(resp.statusText);
-
+      let resp: Response;
+      
+      try {
+        resp = await fetch(primaryUrl);
+      
+        if (!resp.ok) {
+          throw new Error(`Primary request failed: ${resp.status}`);
+        }
+      } catch (primaryError) {
+        console.warn("Primary URL failed, trying fallback...", primaryError);
+      
+        resp = await fetch(fallbackUrl);
+      
+        if (!resp.ok) {
+          throw new Error(`Fallback request failed: ${resp.status}`);
+        }
+      }
+      
       const blob = await resp.blob();
+      
       const file = new File([blob], strippyTitle, { type: blob.type });
 
       const zip = await JSZip.loadAsync(file);
+
       await readFirstImage(zip);
-    } catch (err) {
-      console.error('Strippy cover error:', err);
-      setError('Failed to load cover');
+    } catch (error) {
+      console.error("Strippy cover error:", error);
+    } finally {
       setLoading(false);
     }
-  }, [host, port, strippyFolder, strippyTitle]);
+  }, [host, port, domain, strippyFolder, strippyTitle]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;

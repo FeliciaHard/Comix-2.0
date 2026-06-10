@@ -47,7 +47,7 @@ export default function Home() {
     <div className="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-white transition-colors duration-300 px-6 relative overflow-hidden">
       {/* Background scrolling comics */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 10 }).map((_, rowIndex) => {
+        {Array.from({ length: 20 }).map((_, rowIndex) => {
           // Limit to 30 images per row for better performance
           const shuffledItems = [...items]
             .sort(() => 0.5 - Math.random())
