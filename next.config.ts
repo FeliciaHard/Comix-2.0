@@ -30,7 +30,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'lthumb.lisimg.com',
+        hostname: 'iv1.lisimg.com',
         pathname: '**',
       },
       {
@@ -41,6 +41,11 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'images-cdn.ubuy.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'pbs.twimg.com',
         pathname: '**',
       },
       {

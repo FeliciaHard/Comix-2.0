@@ -55,6 +55,7 @@ const navData = {
         { title: "TS-GD", url: "https://drive.google.com/drive/folders/1TgMkfgF5Mxg5Hk2Sj17b2qFPWdCjbPru" },
         { title: "TS-GD-Cover", url: "https://drive.google.com/drive/folders/1S7ed8GV3i5bzqM4ehYJAUUHPCqGSQauf?usp=sharing" },
         { title: "GedeComix", url: "https://gedecomix.com/comics-artist/tracy-scops/" },
+        { title: "GD", url: "https://drive.google.com/drive/folders/1I3MxNyRRdwrXeg2yuealdf72dJad3Son?usp=drive_link" },
       ],
     },
     {
