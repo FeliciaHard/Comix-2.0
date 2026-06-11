@@ -63,10 +63,10 @@ export default function ComicViewer({ comicTitle }: Props) {
     	const encodedTitle = encodeURIComponent(title);
 	
     	const primaryUrl =
-      	`http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/comix_content/TracyScops_Arc/${encodedTitle}`;
+      	`https://${domain}/comix-src/contents/TracyScops_Arc/${encodedTitle}`;
 	
     	const fallbackUrl =
-      	`https://${domain}/comix-src/contents/TracyScops_Arc/${encodedTitle}`;
+      	`http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/comix_content/TracyScops_Arc/${encodedTitle}`;
 	
     	try {
   			let resp: Response;

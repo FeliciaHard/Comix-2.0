@@ -42,9 +42,14 @@ export default function ComicClient({ comicId }: { comicId: string }) {
   const [shuffleKey, setShuffleKey] = useState(0);
   // const [isSpinning, setIsSpinning] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [audioSrc, setAudioSrc] = useState<string | null>(null);
 
   const host = process.env.NEXT_PUBLIC_BLOB_IP;
   const port = process.env.NEXT_PUBLIC_BLOB_PORT;
+  const domain = process.env.NEXT_PUBLIC_IMAGE_DOMAIN;
+
+  const primarySrc = `https://${domain}/comix-src/contents/TracyScops_Arc/${singleComic?.audio_path}`;
+  const fallbackSrc = `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/audio/${singleComic?.audio_path}`;
 
   const [comicMetadata, setComicMetadata] = useState<{
     title: string;
@@ -59,6 +64,12 @@ export default function ComicClient({ comicId }: { comicId: string }) {
     }
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
+
+  useEffect(() => {
+    if (singleComic?.audio_path) {
+      setAudioSrc(primarySrc);
+    }
+  }, [singleComic?.audio_path, primarySrc]);
 
   useEffect(() => {
     const envAppName = capitalizeFirstLetter(process.env.NEXT_PUBLIC_APP_NAME || 'DefaultAppName');
@@ -288,10 +299,14 @@ export default function ComicClient({ comicId }: { comicId: string }) {
                   <audio
                     controls
                     className="mt-4 w-full rounded"
-                    src={`http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/audio/${singleComic.audio_path}`}
+                    src={audioSrc || undefined}
                     preload="metadata"
-                  >
-                  </audio>
+                    onError={() => {
+                      if (audioSrc !== fallbackSrc) {
+                        setAudioSrc(fallbackSrc);
+                      }
+                    }}
+                  ></audio>
                 </div>
               ) : null}
               <div className='mt-4'>

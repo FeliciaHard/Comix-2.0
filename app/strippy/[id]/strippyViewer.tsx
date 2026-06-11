@@ -68,10 +68,10 @@ export default function StrippyViewer({ strippyFolder, strippyName, strippyTitle
       const encodedTitle = encodeURIComponent(title);
     
       const primaryUrl =
-        `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/content/Strippy/${strippyFolder}/${encodedTitle}`;
+        `https://${domain}/Strippy/${strippyFolder}/${encodedTitle}`;
     
       const fallbackUrl =
-        `https://${domain}/Strippy/${strippyFolder}/${encodedTitle}`;
+        `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/content/Strippy/${strippyFolder}/${encodedTitle}`;
     
       try {
         let resp: Response;

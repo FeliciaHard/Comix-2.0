@@ -417,10 +417,18 @@ export default function Dashboard() {
           </div>
 
           {/* Box Three */}
-          <div className="order-3 md:order-none bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(0,0,0,0.85)] md:col-span-3 aspect-video rounded-xl p-6">
+          <div className="order-1 md:order-none bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(0,0,0,0.85)] md:col-span-1 rounded-xl p-6">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Box Three</h2>
             <p className="text-sm text-gray-700 dark:text-gray-300">
               And this is the third one — responsive and styled for both light and dark mode.
+            </p>
+          </div>
+
+          {/* Box Four */}
+          <div className="order-3 md:order-none bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(0,0,0,0.85)] md:col-span-2 aspect-video rounded-xl p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Box Four</h2>
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              And this is the fourth one — responsive and styled for both light and dark mode.
             </p>
           </div>
         </div>

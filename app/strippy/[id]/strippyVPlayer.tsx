@@ -10,11 +10,13 @@ interface VideoItem {
 
 interface StrippyVPlayerProps {
   strippyFolder: string;
+  strippyVids: string[];
   loading?: boolean;
 }
 
 export default function StrippyVPlayer({
   strippyFolder,
+  strippyVids,
   loading = false,
 }: StrippyVPlayerProps) {
   const host = process.env.NEXT_PUBLIC_BLOB_IP;
@@ -30,17 +32,7 @@ export default function StrippyVPlayer({
       setInternalLoading(true);
 
       try {
-        const res = await fetch(
-          `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/content/Strippy/${strippyFolder}/Footage/Temp/`
-        );
-
-        const text = await res.text();
-
-        const mp4Files = Array.from(
-          text.matchAll(/href="([^"]+\.mp4)"/gi)
-        ).map((m) => m[1]);
-
-        const videoItems: VideoItem[] = mp4Files.map((f) => ({
+        const videoItems: VideoItem[] = strippyVids.map((f) => ({
           title: f,
           filename: f,
         }));
@@ -84,29 +76,57 @@ export default function StrippyVPlayer({
   }
 
   return (
-    <div className="mt-6 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center auto-rows-fr">
+    <div className="mt-6 grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 justify-items-center auto-rows-fr">
       {videos.map((video, index) => {
-        const videoUrl = `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/content/Strippy/${strippyFolder}/Footage/Temp/${video.filename}`;
-
-        return (
-          <div
-            key={index}
-            className="group flex flex-col w-full min-w-[150px] bg-black rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden"
-          >
-            <div className="aspect-video w-full bg-black">
-              <VideoPlayer src={videoUrl} />
-            </div>
-
-            <div className="p-2 text-center">
-              <p
-                className="text-sm font-bold text-white truncate uppercase"
-                title={video.title}
+        try {
+          if (index != 0) {
+            return (
+              <div
+                key={index}
+                className="group flex flex-col w-full min-w-[150px] bg-black rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden"
               >
-                {formatVideoTitle(video.title)}
-              </p>
-            </div>
-          </div>
-        );
+                <div className="aspect-video w-full bg-black">
+                  <iframe className="w-full h-full" src={video.filename}></iframe>
+                </div>
+  
+                <div className="p-2 text-center">
+                  <p
+                    className="text-sm font-bold text-white truncate uppercase"
+                    title={video.title}
+                  >
+                    {/* {formatVideoTitle(video.title)} */}
+                  </p>
+                </div>
+              </div>
+            );
+          }
+        } catch(err) {
+          console.log("Fallback Video Request")
+
+          const videoUrl = `http://${host}:${port}/test-site/main/php/dashboard/display-comixs/page/content/Strippy/${strippyFolder}/Footage/Temp/${video.filename}`;
+
+          if (index != 0) {
+            return (
+              <div
+                key={index}
+                className="group flex flex-col w-full min-w-[150px] bg-black rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden"
+              >
+                <div className="aspect-video w-full bg-black">
+                  <VideoPlayer src={videoUrl} />
+                </div>
+  
+                <div className="p-2 text-center">
+                  <p
+                    className="text-sm font-bold text-white truncate uppercase"
+                    title={video.title}
+                  >
+                    {formatVideoTitle(video.title)}
+                  </p>
+                </div>
+              </div>
+            );
+          }
+        }
       })}
     </div>
   );
