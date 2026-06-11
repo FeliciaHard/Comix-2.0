@@ -52,6 +52,10 @@
                 "tags": ["telegram", "channel", "binary", "metadata"],
                 "created_at": "",
                 "version": ""
+            },
+
+            "vids": {
+                "vids_src": [""]
             }
         },
 
@@ -107,6 +111,31 @@
                 "tags": ["telegram", "channel", "binary", "metadata"],
                 "created_at": "",
                 "version": ""
+            },
+
+            "vids": {
+                "vids_src": [
+                    "https://drive.google.com/file/d/1hB5R3FMlbKlWHYQ8o76MsbFCzoGMVW6I/preview",
+                    "https://drive.google.com/file/d/1y7t3Hnm7k0wpY20-7XGTdoWxSjoYnUnI/preview",
+                    "https://drive.google.com/file/d/1o7n1n1o8lspRd2ZPFx1gtvuQTTLkekns/preview",
+                    "https://drive.google.com/file/d/1kZ6zaWpuo0JceejhoOUY8BlKnbOteruh/preview",
+                    "https://drive.google.com/file/d/1I_m-nPchxvCFs_-6kuNLS3Di-DR72ZP_/preview",
+                    "https://drive.google.com/file/d/1InFhdsywjTdiA8lgMoJRjibJ2rH_Tc3U/preview",
+                    "https://drive.google.com/file/d/1ScFm6g9aKVcuk3XP5FL6cEq3J4-fQt9v/preview",
+                    "https://drive.google.com/file/d/1DUq-tdyg0db47gOOZ7fhm1L1bxgVv8PV/preview",
+                    "https://drive.google.com/file/d/1FOudk4LM0NEmpmq2ESy3-HBbqgHzEDkV/preview",
+                    "https://drive.google.com/file/d/1WMmSHOdoMauE-Xv2ktBhJPeRaQkL92vB/preview",
+                    "https://drive.google.com/file/d/1eJAAoHtX-dAKmOgwaDlJpyM_Gk6jQCHA/preview",
+                    "https://drive.google.com/file/d/1fbfIuLw1fHcq9RT57_A23kLAzo-1djYh/preview",
+                    "https://drive.google.com/file/d/1Wv0AmdASQ6_OCJzSJ3tRKHfxFD7azrAw/preview",
+                    "https://drive.google.com/file/d/1dNLXJyZogMxBoSSKGSi3B_q0ash5v7Bp/preview",
+                    "https://drive.google.com/file/d/1dMfUSfQ_QYLhlgBIE7q_Z1r8GGhdmeKk/preview",
+                    "https://drive.google.com/file/d/10h2JJsflDiVoZBddPn158EB3sa-_9XOU/preview",
+                    "https://drive.google.com/file/d/1PGlQ63SMjGzFTzfLFWO-tt_s52kd0X0j/preview",
+                    "https://drive.google.com/file/d/1pdKhhvrLiItc-12kFKwuOF4gmkvscz7V/preview",
+                    "https://drive.google.com/file/d/1B4vVb8x2vNc2_AWnzZ5n4NZrW2_y4Jtk/preview",
+                    "https://drive.google.com/file/d/1osPSXjAcJhFaA7IQcPV_0l-uL-_v_ygU/preview"
+                ]
             }
         },
 
@@ -115,8 +144,8 @@
 
             "bio": {
                 "bio_name": "Jeff Milton",
-                "bio_pic": "https://images-cdn.ubuy.com/68de901fd52cbb0858024f3e-jeff-milton-set-of-20-12x8-photo.jpg",
-                "bio_pic2": "",
+                "bio_pic": "https://pbs.twimg.com/media/E2G_cOWXIAIBbVB.jpg",
+                "bio_pic2": "https://images-cdn.ubuy.com/68de901fd52cbb0858024f3e-jeff-milton-set-of-20-12x8-photo.jpg",
                 "bio_birthdate": "1994-06-22",
                 "bio_zodiac": "Cancer",
                 "bio_sex": "Female",
@@ -162,6 +191,10 @@
                 "tags": ["telegram", "channel", "binary", "metadata"],
                 "created_at": "",
                 "version": ""
+            },
+
+            "vids": {
+                "vids_src": [""]
             }
         },
 
@@ -170,8 +203,8 @@
 
             "bio": {
                 "bio_name": "Kaytee Bees",
-                "bio_pic": "https://lthumb.lisimg.com/240/2284240.jpg?width=312&sharpen=true",
-                "bio_pic2": "",
+                "bio_pic": "https://iv1.lisimg.com/image/2284240/640full-kaytee-bees.jpg",
+                "bio_pic2": "https://iv1.lisimg.com/image/2284268/633full-kaytee-bees.jpg",
                 "bio_birthdate": "1983-06-05",
                 "bio_zodiac": "Gemini",
                 "bio_sex": "Female",
@@ -217,6 +250,17 @@
                 "tags": ["telegram", "channel", "binary", "metadata"],
                 "created_at": "",
                 "version": ""
+            },
+
+            "vids": {
+                "vids_src": [
+                    "https://drive.google.com/file/d/1W_GN-eFQwoWntSJmDuRGmpDRqybqirc7/preview",
+                    "https://drive.google.com/file/d/1XuBfvU7V6fqPjSOcUWlSxnbRb1vjz7Cw/preview",
+                    "https://drive.google.com/file/d/1M93pOBHo5yBQW8HB-cXXl947jzfQYLkC/preview",
+                    "https://drive.google.com/file/d/1iyDEW7OT01Ilz0C40C2e_Xb2boylLUT-/preview",
+                    "https://drive.google.com/file/d/1yVY2ZxxRJbiVXhR64Cc-Rftk2i2rrJKp/preview",
+                    "https://drive.google.com/file/d/10XJAJYDEUUSkd7ojz3oyFcN_OGmeyxPH/preview"
+                ]
             }
         }
     ]

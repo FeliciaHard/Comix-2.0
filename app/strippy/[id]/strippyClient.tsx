@@ -157,6 +157,7 @@ export default function StrippyClient({ strippyId }: PageProps) {
   const bio = callStrippy.bio || {};
   const media = callStrippy.media || [];
   const filePath = callStrippy.file?.file_path || "Not Available!";
+  const vidsPath = callStrippy.vids?.vids_src || "Not Available!";
 
   const socialMediaLinks = [
     { key: 'media_telegram', label: 'Telegram', icon: <Send size={20} />, hoverClass: 'hover:text-blue-500' },
@@ -386,7 +387,7 @@ export default function StrippyClient({ strippyId }: PageProps) {
                 Special Videos
               </h2>
 
-              <StrippyVPlayer strippyFolder={filePath} loading={loading} />
+              <StrippyVPlayer strippyFolder={filePath} strippyVids={vidsPath} loading={loading} />
             </div>
         </div>
       </div>
