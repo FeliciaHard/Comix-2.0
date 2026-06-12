@@ -104,39 +104,58 @@ export default function ComicViewer({ comicTitle }: Props) {
   }, [comicPages]);
 
   async function readContents(archive: JSZip) {
-    const entries = Object.values(archive.files).filter((file) => {
-      const ext = getExt(file.name);
-      return ext && ext !== 'db' && !file.name.endsWith('/');
-    });
-
-    entries.sort((a, b) => sortNames(a, b));
-
-    const imageBlobs: { name: string; url: string }[] = [];
-    const seenNames = new Set<string>();
-
-    for (const entry of entries) {
-      if (seenNames.has(entry.name)) continue;
-      seenNames.add(entry.name);
-
-      try {
-        const data = await entry.async('uint8array');
-        const blob = new Blob([data], { type: getMIME(entry.name) });
-        const url = URL.createObjectURL(blob);
-        imageBlobs.push({ name: entry.name, url });
-      } catch (err) {
-        console.error(`Error reading ${entry.name}:`, err);
+      const entries = Object.values(archive.files).filter((file) => {
+        const ext = getExt(file.name);
+        return ext && ext !== 'db' && !file.name.endsWith('/');
+      });
+    
+      entries.sort((a, b) => sortNames(a, b));
+    
+      const imageBlobs: { name: string; url: string }[] = [];
+      const seenNames = new Set<string>();
+    
+      for (const entry of entries) {
+        if (seenNames.has(entry.name)) continue;
+        seenNames.add(entry.name);
+    
+        try {
+          const data = await entry.async('uint8array');
+    
+          // Create a guaranteed ArrayBuffer
+          const buffer = new ArrayBuffer(data.byteLength);
+          new Uint8Array(buffer).set(data);
+    
+          // Use ArrayBuffer directly in Blob
+          const blob = new Blob([buffer], {
+            type: getMIME(entry.name),
+          });
+    
+          const url = URL.createObjectURL(blob);
+    
+          imageBlobs.push({
+            name: entry.name,
+            url,
+          });
+        } catch (err) {
+          console.error(`Error reading ${entry.name}:`, err);
+        }
       }
-    }
-
-    const uniqueSortedImages = [...new Map(imageBlobs.map(i => [i.name, i])).values()]
-      .sort((a, b) => sortNames({ name: a.name }, { name: b.name }));
-
-    setComicPages(uniqueSortedImages);
-    setLoading(false);
-
-    setTimeout(() => {
-      initViewer();
-    }, 100);
+    
+      const uniqueSortedImages = [
+        ...new Map(imageBlobs.map((i) => [i.name, i])).values(),
+      ].sort((a, b) =>
+        sortNames(
+          { name: a.name },
+          { name: b.name }
+        )
+      );
+    
+      setComicPages(uniqueSortedImages);
+      setLoading(false);
+    
+      setTimeout(() => {
+        initViewer();
+      }, 100);
   }
 
   function initViewer() {
