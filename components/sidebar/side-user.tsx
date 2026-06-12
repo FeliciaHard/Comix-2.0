@@ -95,24 +95,55 @@ export function SideUser({
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg dark:bg-black"
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-85 rounded-lg dark:bg-black"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}
           >
             <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-full">
+              <div className="flex items-center gap-4 px-2 py-2">
+                <Avatar className="h-28 w-28 rounded-full">
                   <AvatarImage
-                    src={user.profile || "/default-profile.jpg"} // Use fallback if profile is null
+                    src={user.profile || "/default-profile.jpg"}
                     alt={user.name}
                     className="object-cover"
                   />
-                  <AvatarFallback className="rounded-lg">AD</AvatarFallback>
+                  <AvatarFallback>AD</AvatarFallback>
                 </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium uppercase">{user.name}</span>
-                  {/* <span className="truncate text-xs">{user.email}</span> */}
+            
+                <div className="flex-1 space-y-1">
+                  <div>
+                    <p className="font-semibold text-lg uppercase">{user.name}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {user.role || "Employee"}
+                    </p>
+                  </div>
+            
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                    <div>
+                      <span className="font-medium">ID:</span>{" "}
+                      {user.id || "N/A"}
+                    </div>
+            
+                    <div>
+                      <span className="font-medium">Status:</span>{" "}
+                      <span className="text-green-600">{user.curr_status || "Unknown"}</span>
+                    </div>
+            
+                    <div>
+                      <span className="font-medium">Subscription:</span>{" "}
+                      {user.subs || "N/A"}
+                    </div>
+            
+                    <div>
+                      <span className="font-medium">Tier:</span>{" "}
+                      {user.tier || "N/A"}
+                    </div>
+                  </div>
+            
+                  <p className="truncate text-xs text-muted-foreground">
+                    {user.email || "example@gmail.com"}
+                  </p>
                 </div>
               </div>
             </DropdownMenuLabel>

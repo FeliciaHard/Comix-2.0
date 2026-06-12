@@ -68,6 +68,11 @@ export async function POST(request: Request) {
         id: user.id,
         name: user.name,
         profile: user.profile,
+        email: user.email,
+        curr_status: user.curr_status,
+        subs: user.subs,
+        tier: user.tier,
+        role: user.role,
       },
     });
 
