@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import {
   Pagination,
   PaginationContent,
@@ -27,6 +27,14 @@ type Dash = {
   dis_comix: string;
 };
 
+type Music = {
+  id: number;
+  title: string;
+  artist: string;
+  cover: string;
+  src: string;
+};
+
 export default function Dashboard() {
   const [bgimage, setBgImage] = useState<BgImage[]>([]);
   const [dashDatas, setDashData] = useState<Dash[]>([]);
@@ -39,6 +47,10 @@ export default function Dashboard() {
   const [shuffleKey, setShuffleKey] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const [headerOpacity, setHeaderOpacity] = useState(1);
+    
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  
+  const domain = process.env.NEXT_PUBLIC_IMAGE_DOMAIN;
 
   const itemsPerPage = 24;
 
@@ -124,6 +136,16 @@ export default function Dashboard() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  
+  const playlist: Music[] = Array.from({ length: 19 }, (_, i) => ({
+    id: i + 1,
+    title: `Track ${i + 1}`,
+    artist: "Unknown Artist",
+    cover: `https://${domain}/comix-src/audios/others/covers/album.png`,
+    src: `https://${domain}/comix-src/audios/others/vocals/${i + 1}.mp3`,
+  }));
+  
+  const [currentTrack, setCurrentTrack] = useState<Music>(playlist[0]);
 
   return (
     <div
@@ -416,19 +438,94 @@ export default function Dashboard() {
             </ScrollArea>
           </div>
 
-          {/* Box Three */}
-          <div className="order-1 md:order-none bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(0,0,0,0.85)] md:col-span-1 rounded-xl p-6">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Box Three</h2>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
-              And this is the third one — responsive and styled for both light and dark mode.
-            </p>
+          {/* Box Three - Playlist */}
+          <div className="md:order-3 order-4 bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(0,0,0,0.85)] md:col-span-1 rounded-xl p-6 flex flex-col max-h-[500px]">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                Playlist
+              </h2>
+            
+              <ScrollArea className="flex-1 min-h-0 pr-2 hide-scrollbar">
+                {playlist.map((song) => (
+                  <button
+                    key={song.id}
+                    onClick={() => {
+                      setCurrentTrack(song);
+                    
+                      setTimeout(() => {
+                        audioRef.current?.play();
+                      }, 0);
+                    }}
+                    className={`w-full flex items-center gap-3 p-2 rounded-xl transition cursor-pointer
+                      ${
+                        currentTrack.id === song.id
+                          ? "bg-fuchsia-800 text-white"
+                          : "hover:bg-gray-200 dark:hover:bg-gray-800"
+                      }`}
+                  >
+                    <Image
+                      src={song.cover}
+                      alt={song.title}
+                      width={50}
+                      height={50}
+                      className="rounded-md object-cover"
+                    />
+            
+                    <div className="text-left overflow-hidden">
+                      <p className="font-medium truncate">{song.title}</p>
+                      <p className="text-xs opacity-70 truncate">{song.artist}</p>
+                    </div>
+                  </button>
+                ))}
+              </ScrollArea>
           </div>
 
-          {/* Box Four */}
-          <div className="order-3 md:order-none bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(0,0,0,0.85)] md:col-span-2 aspect-video rounded-xl p-6">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Box Four</h2>
+          {/* Box Four - Music Player */}
+          <div className="md:order-4 order-3 bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(0,0,0,0.85)] md:col-span-2 rounded-xl p-6">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                Music Player
+              </h2>
+            
+              <div className="flex flex-col items-center">
+                {/* Album Cover */}
+                <div className="relative w-64 h-64 mb-4 overflow-hidden border-4 border-solid border-fuchsia-800 rounded-2xl shadow-xl">
+                  <Image
+                    src={currentTrack.cover}
+                    alt={currentTrack.title}
+                    fill
+                    className="object-cover"
+                    sizes="100vw"
+                  />
+                </div>
+            
+                {/* Song Info */}
+                <div className="text-center mb-4">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                    {currentTrack.title}
+                  </h3>
+            
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {currentTrack.artist}
+                  </p>
+                </div>
+            
+                {/* Audio Player */}
+                <audio
+                  ref={audioRef}
+                  key={currentTrack.src}
+                  controls
+                  className="w-full max-w-lg"
+                >
+                  <source src={currentTrack.src} type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+          </div>
+          
+          {/* Box Five */}
+          <div className="order-5 md:order-5 bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(0,0,0,0.85)] md:col-span-3 rounded-xl p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Box Five</h2>
             <p className="text-sm text-gray-700 dark:text-gray-300">
-              And this is the fourth one — responsive and styled for both light and dark mode.
+              And this is the fifth one — responsive and styled for both light and dark mode.
             </p>
           </div>
         </div>

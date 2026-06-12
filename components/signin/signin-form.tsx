@@ -52,6 +52,7 @@ export function SigninForm({
           // alert("Login successful! User: " + user.name);
           console.log("Redirecting user...");
           router.push("/dashboard");
+          router.refresh();
         } else {
           setError("Invalid response from server");
         }

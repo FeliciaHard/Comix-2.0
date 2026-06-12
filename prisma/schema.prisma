@@ -8,12 +8,17 @@ datasource db {
 }
 
 model tbl_user {
-  id        Int      @id
-  name      String   @db.VarChar(150)
-  pass      String   @db.VarChar(255)
-  pass_inc  String   @db.VarChar(255)
-  profile   String   @db.LongText
-  timestamp DateTime @default(now()) @db.Timestamp(0)
+  id          Int      @id
+  name        String   @db.VarChar(150)
+  email       String   @db.VarChar(50)
+  curr_status String   @db.VarChar(10)
+  subs        String   @db.VarChar(10)
+  tier        String   @db.VarChar(10)
+  role        String   @db.VarChar(20)
+  pass        String   @db.VarChar(255)
+  pass_inc    String   @db.VarChar(255)
+  profile     String   @db.LongText
+  timestamp   DateTime @default(now()) @db.Timestamp(0)
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
