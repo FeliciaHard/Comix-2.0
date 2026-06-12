@@ -41,7 +41,7 @@ ENV PUPPETEER_SKIP_DOWNLOAD=true
 # Copy package files & install only production deps
 COPY package*.json ./
 # RUN npm install
-RUN npm install --production
+RUN npm install --omit=dev
 # RUN npm install --only=production
 
 # Copy build output and other required files
