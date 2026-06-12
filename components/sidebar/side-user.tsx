@@ -32,13 +32,21 @@ import {
 } from "@/components/ui/sidebar";
 import { useRouter } from "next/navigation";
 
+type User = {
+  id?: string;
+  name: string;
+  profile: string | null;
+  role?: string;
+  curr_status?: string;
+  subs?: string;
+  tier?: string;
+  email?: string;
+};
+
 export function SideUser({
   user,
 }: {
-  user: {
-    name: string;
-    profile: string | null;
-  } | null; // Allow user to be null
+  user: User | null;
 }) {
   const { isMobile } = useSidebar();
   const router = useRouter();
