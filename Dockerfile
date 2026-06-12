@@ -11,7 +11,7 @@ RUN npm install
 COPY . .
 
 # Prisma client pull from DB for Linux
-RUN npx prisma db pull
+#RUN npx prisma db pull
 
 # Generate Prisma client for Linux
 RUN npx prisma generate
@@ -50,7 +50,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.ts ./next.config.ts
 COPY --from=builder /app/lib ./lib
 COPY --from=builder /app/package.json ./package.json
-#COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/prisma ./prisma
 #COPY --from=builder /app/node_modules ./node_modules
 
 # Expose container port
