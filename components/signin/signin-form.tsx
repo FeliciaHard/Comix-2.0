@@ -67,9 +67,9 @@ export function SigninForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+      <Card className="rounded-4xl bg-hidden border-none">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Welcome back</CardTitle>
+          <CardTitle className="text-4xl">Let's Sign In!</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
@@ -81,6 +81,7 @@ export function SigninForm({
                   type="text"
                   required
                   value={username}
+				  className="bg-gradient-to-b from-black/50 to-black/50"
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
@@ -99,6 +100,7 @@ export function SigninForm({
                   type="password"
                   required
                   value={password}
+				  className="bg-gradient-to-b from-black/50 to-black/50"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
